@@ -1,61 +1,60 @@
 # ==============================================================================
-# MEMARCH — Memory + Architecture
-# Makefile para el driver de benchmarks (final.c + rutinas ASM)
+# MEMARCH — TB-01: Profundidad de stack según paradigma
+# ==============================================================================
 #
 # Targets:
-#   make           — compila el binario ./memarch_bench
-#   make run       — compila y ejecuta el benchmark
-#   make perf      — ejecuta bajo perf stat con contadores de hardware
-#   make clean     — elimina objetos y binarios
+#   make           — compila ./tb01_driver
+#   make run       — ejecuta y muestra en pantalla
+#   make data      — ejecuta y guarda CSV en data/
+#   make verify    — verifica que el crecimiento es lineal O(n)
+#   make clean     — elimina objetos, binario y CSVs
 # ==============================================================================
 
 CC      := gcc
 ASM     := nasm
 CFLAGS  := -O2 -g -Wall -Wextra -no-pie
 ASFLAGS := -f elf64 -g -F dwarf
-LDFLAGS := -no-pie
 
-BIN     := memarch_bench
+BIN     := tb01_driver
+ASM_DIR := ..
+ASM_OBJ := factorial_rec.o factorial_iter.o
+CSV     := data/tb01_$(shell hostname)_$(shell date +%Y%m%d).csv
 
-ASM_SRC := factorial_rec.asm factorial_iter.asm \
-           fibo_rec_lib.asm  fibo_iter_lib.asm  fibo_memo.asm
-ASM_OBJ := factorial_rec.o   factorial_iter.o  \
-           fibo_rec.o        fibo_iter.o       fibo_memo.o
-
-C_SRC   := final.c
-
-.PHONY: all run perf clean
+.PHONY: all run data verify clean
 
 all: $(BIN)
 
-$(BIN): $(C_SRC) $(ASM_OBJ)
-	$(CC) $(CFLAGS) $(C_SRC) $(ASM_OBJ) -o $(BIN)
+$(BIN): tb01_driver.c $(ASM_OBJ)
+	$(CC) $(CFLAGS) tb01_driver.c $(ASM_OBJ) -o $(BIN)
 
-# Reglas explícitas (los nombres de .asm y .o no coinciden uno a uno
-# en los Fibonacci, donde *_lib.asm produce el .o sin sufijo).
-factorial_rec.o:  factorial_rec.asm
+factorial_rec.o: $(ASM_DIR)/factorial_rec.asm
 	$(ASM) $(ASFLAGS) $< -o $@
 
-factorial_iter.o: factorial_iter.asm
-	$(ASM) $(ASFLAGS) $< -o $@
-
-fibo_rec.o:       fibo_rec_lib.asm
-	$(ASM) $(ASFLAGS) $< -o $@
-
-fibo_iter.o:      fibo_iter_lib.asm
-	$(ASM) $(ASFLAGS) $< -o $@
-
-fibo_memo.o:      fibo_memo.asm
+factorial_iter.o: $(ASM_DIR)/factorial_iter.asm
 	$(ASM) $(ASFLAGS) $< -o $@
 
 run: $(BIN)
 	./$(BIN)
 
-# Requiere perf disponible (linux-tools-generic) y
-# kernel.perf_event_paranoid <= 1 en WSL2.
-perf: $(BIN)
-	perf stat -e cycles,instructions,branches,branch-misses,\
-cache-references,cache-misses ./$(BIN)
+data: $(BIN)
+	mkdir -p data
+	./$(BIN) > $(CSV)
+	@echo "CSV escrito en $(CSV)"
+	@cat $(CSV)
+
+verify: data
+	@echo ""
+	@echo "--- Verificación de crecimiento lineal O(n) ---"
+	@awk -F, 'NR>1 && $$2=="rec" { \
+		if (n_ant > 0) { \
+			r_n = $$1 / n_ant; \
+			r_b = $$3 / b_ant; \
+			printf "n=%4d->%4d  bytes=%6d->%6d  ratio_n=%.2f  ratio_bytes=%.2f  bytes/nivel=%.2f\n", \
+				n_ant, $$1, b_ant, $$3, r_n, r_b, $$4; \
+		} \
+		n_ant = $$1; b_ant = $$3; \
+	}' $(CSV)
 
 clean:
 	rm -f $(ASM_OBJ) $(BIN)
+	rm -rf data
