@@ -2,7 +2,7 @@
 
 **Proyecto:** MEMARCH — Memory + Architecture
 **Documento:** `docs/environment.md` — Especificación detallada del hardware y software usados en las mediciones
-**Versión:** 1.0 — Mayo 2026
+**Versión:** 1.0
 
 ---
 
@@ -13,7 +13,7 @@ La reproducibilidad de los resultados de MEMARCH depende críticamente del hardw
 MEMARCH ejecuta cada experimento en **dos escenarios** complementarios:
 
 - **Escenario A — Plataforma principal de desarrollo:** equipo de alto rendimiento basado en Intel Raptor Lake (i7-13700HX). Representa hardware contemporáneo de gama alta con arquitectura híbrida P-core/E-core.
-- **Escenario B — Plataforma de referencia de bajo perfil:** equipo basado en Intel Ivy Bridge (i5-3320M). Representa hardware aún en uso en entornos académicos y administrativos del TecNM, sin arquitectura híbrida ni extensiones AVX2.
+- **Escenario B — Plataforma de referencia de bajo perfil:** equipo basado en Intel Ivy Bridge (i5-3320M). Representa hardware comun, sin arquitectura híbrida ni extensiones AVX2.
 
 El contraste entre ambos permite estudiar la **portabilidad de los hallazgos** a través de 11 años de evolución microarquitectónica.
 
