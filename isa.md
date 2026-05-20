@@ -528,4 +528,4 @@ flowchart TD
 
 ---
 
-<p align="center"><em>MEMARCH — donde la memoria y la arquitectura se encuentran.</em></p>
+<p align="center"><em>Doctorado en Sistemas UNISUR</em></p>
