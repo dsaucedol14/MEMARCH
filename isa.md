@@ -415,19 +415,21 @@ sequenceDiagram
     participant fact2 as factorial_rec(2)
     participant fact1 as factorial_rec(1)
 
-    Note over main: RSP = 0x7FFF...F00
-    main->>fact3: CALL (RSP -= 8, push RIP)
-    Note over fact3: RSP = 0x7FFF...EF8<br/>push rdi; sub rsp,8<br/>RSP = 0x7FFF...EE8
-    fact3->>fact2: CALL (RSP -= 8)
-    Note over fact2: RSP = 0x7FFF...EE0<br/>push rdi; sub rsp,8<br/>RSP = 0x7FFF...ED0
-    fact2->>fact1: CALL (RSP -= 8)
-    Note over fact1: RSP = 0x7FFF...EC8<br/>caso base: mov eax,1; ret
-    fact1-->>fact2: RET (RAX=1)
-    Note over fact2: pop rdi; add rsp,8<br/>imul rax,rdi → RAX=2
-    fact2-->>fact3: RET (RAX=2)
-    Note over fact3: pop rdi; add rsp,8<br/>imul rax,rdi → RAX=6
-    fact3-->>main: RET (RAX=6)
+    Note over main: RSP base = 0xF00
+    main->>fact3: CALL n=3
+    Note over fact3: prologo<br/>RSP = 0xEE8
+    fact3->>fact2: CALL n=2
+    Note over fact2: prologo<br/>RSP = 0xED0
+    fact2->>fact1: CALL n=1
+    Note over fact1: caso base<br/>RSP = 0xEC8<br/>RAX = 1
+    fact1-->>fact2: RET RAX=1
+    Note over fact2: epilogo<br/>imul → RAX = 2
+    fact2-->>fact3: RET RAX=2
+    Note over fact3: epilogo<br/>imul → RAX = 6
+    fact3-->>main: RET RAX=6
 ```
+
+> **Lectura del diagrama:** cada `CALL` empuja 8 bytes (dirección de retorno); el prólogo de la función añade 16 bytes más (`push rdi` + alineación), por lo que el RSP desciende 24 bytes por nivel de recursión. Los valores `0xF00`, `0xEE8`, etc. son los 12 bits inferiores del RSP en una corrida típica; los bits altos se omiten por claridad.
 
 ### 8.4 Pipeline del bucle iterativo `fib_iter`
 
@@ -470,24 +472,24 @@ IPC efectivo ≈ 1.2 – 1.5 (limitado por dependencia secuencial
 
 ```mermaid
 graph LR
-    subgraph "factorial_rec — marco 24 B"
-        A1["+16: dirección retorno"]
-        A2["+8:  RDI guardado (n)"]
-        A3["+0:  padding alineación"]
+    subgraph FR["factorial_rec - 24 B"]
+        A1["offset +16: direccion retorno"]
+        A2["offset +8: RDI guardado n"]
+        A3["offset +0: padding alineacion"]
     end
 
-    subgraph "fib_rec — marco 24 B"
-        B1["+16: dirección retorno"]
-        B2["+8:  RBX guardado"]
-        B3["+0:  fib(n-1) temporal"]
+    subgraph FI["fib_rec - 24 B"]
+        B1["offset +16: direccion retorno"]
+        B2["offset +8: RBX guardado"]
+        B3["offset +0: fib n-1 temporal"]
     end
 
-    subgraph "fib_memo — marco 40 B"
-        C1["+32: dirección retorno"]
-        C2["+24: RBX guardado (n)"]
-        C3["+16: R12 guardado (memo*)"]
-        C4["+8:  R13 guardado (fib n-1)"]
-        C5["+0:  padding alineación"]
+    subgraph FM["fib_memo - 40 B"]
+        C1["offset +32: direccion retorno"]
+        C2["offset +24: RBX guardado n"]
+        C3["offset +16: R12 guardado memo ptr"]
+        C4["offset +8: R13 guardado fib n-1"]
+        C5["offset +0: padding alineacion"]
     end
 ```
 
@@ -495,20 +497,20 @@ graph LR
 
 ```mermaid
 flowchart TD
-    subgraph "fib_iter — patrón regular"
+    subgraph ITER["fib_iter - patron regular"]
         I1[JNZ tomado] --> I2[JNZ tomado]
         I2 --> I3[JNZ tomado]
-        I3 --> I4[... n-2 veces ...]
+        I3 --> I4["... n-2 veces ..."]
         I4 --> I5[JNZ NO tomado]
-        I1 -.->|BTB aprende en 2-3 iter| OK[branch-misses ≈ 0]
+        I1 -.->|BTB aprende en 2-3 iter| OK["branch-misses cercano a 0"]
     end
 
-    subgraph "fib_rec — patrón irregular"
-        R1[JAE depende de n] --> R2[JAE depende de n-1]
-        R2 --> R3[JAE depende de n-2]
-        R3 --> R4[... árbol exponencial ...]
-        R4 --> R5[RSB overflow > 16 niveles]
-        R1 -.->|patrón no predecible| BAD[branch-misses altos]
+    subgraph REC["fib_rec - patron irregular"]
+        R1["JAE depende de n"] --> R2["JAE depende de n-1"]
+        R2 --> R3["JAE depende de n-2"]
+        R3 --> R4["arbol exponencial"]
+        R4 --> R5["RSB overflow mas de 16 niveles"]
+        R1 -.->|patron no predecible| BAD["branch-misses altos"]
     end
 ```
 
