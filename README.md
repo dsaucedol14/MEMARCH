@@ -124,11 +124,7 @@ memarch/
 ├── benchmarks/
 │   ├── runners/          # Scripts que ejecutan perf y recogen métricas
 │   └── configs/          # Configuraciones de eventos perf
-├── data/
-│   ├── raw/              # CSV/JSON crudos por experimento
-│   └── processed/        # Datos agregados listos para análisis
 ├── analysis/
-│   ├── notebooks/        # Jupyter notebooks de análisis exploratorio
 │   └── scripts/          # Scripts Python de procesamiento y gráficas
 ├── docs/
 │   ├── paper/            # Documento principal en formato IEEE/ASME
