@@ -2,7 +2,7 @@
 
 **Proyecto:** MEMARCH — Memory + Architecture
 **Autores:** Daniel Saucedo León, Manuel Hernández
-**Institución:** Instituto Tecnológico Superior de Huauchinango (TecNM)
+**Institución:** UNISUR
 **Documento:** `docs/isa.md` — Especificación técnica de la arquitectura objetivo
 **Versión:** 1.0 — Mayo 2026
 
