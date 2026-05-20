@@ -126,10 +126,12 @@ memarch/
 │   └── configs/          # Configuraciones de eventos perf
 ├── analysis/
 │   └── scripts/          # Scripts Python de procesamiento y gráficas
+│   └── csv/              # CSV 's de resultados
 ├── docs/
 │   ├── paper/            # Documento principal en formato IEEE/ASME
 │   ├── figures/          # Figuras finales
 │   └── environment.md    # Especificación detallada del hardware
+│   └── pruebas/           # Documentos con los resultados de las pruebas
 ├── results/              # Reportes y gráficas publicables
 ├── tests/                # Verificación de correctitud de cada implementación
 ├── Makefile              # Compilación, benchmarks y limpieza
