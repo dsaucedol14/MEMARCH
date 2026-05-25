@@ -121,6 +121,7 @@ memarch/
 │   ├── asm/              # Implementaciones en NASM (.asm)
 │   ├── c/                # Implementaciones en C (.c, .h)
 │   └── common/           # Headers, utilidades, macros de medición
+│   └── Desemsamblados     # Desensamblados para análisis
 ├── benchmarks/
 │   ├── runners/          # Scripts que ejecutan perf y recogen métricas
 │   └── configs/          # Configuraciones de eventos perf
