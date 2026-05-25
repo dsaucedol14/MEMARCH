@@ -1,0 +1,18 @@
+
+asm_iter.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <factorial_iter>:
+   0:	mov    eax,0x1
+   5:	cmp    rdi,0x1
+   9:	jle    14 <factorial_iter.done>
+
+000000000000000b <factorial_iter.loop>:
+   b:	imul   rax,rdi
+   f:	dec    rdi
+  12:	jne    b <factorial_iter.loop>
+
+0000000000000014 <factorial_iter.done>:
+  14:	ret
