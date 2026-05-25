@@ -1,0 +1,14 @@
+
+ Performance counter stats for './final_O0':
+
+            426396      cycles:u                                                              
+            154086      instructions:u                                                        
+              8407      cache-misses:u                                                        
+              2814      branch-misses:u                                                       
+
+       0.001242723 seconds time elapsed
+
+       0.000167000 seconds user
+       0.000000000 seconds sys
+
+
