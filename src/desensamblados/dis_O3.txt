@@ -1,0 +1,95 @@
+
+rutinas_O3.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <factorial_rec_c>:
+   0:	endbr64
+   4:	mov    eax,0x1
+   9:	cmp    rdi,0x1
+   d:	jbe    1e <factorial_rec_c+0x1e>
+   f:	nop
+  10:	imul   rax,rdi
+  14:	sub    rdi,0x1
+  18:	cmp    rdi,0x1
+  1c:	jne    10 <factorial_rec_c+0x10>
+  1e:	ret
+  1f:	nop
+
+0000000000000020 <factorial_rec_acc_c>:
+  20:	endbr64
+  24:	mov    rax,rsi
+  27:	cmp    rdi,0x1
+  2b:	jbe    76 <factorial_rec_acc_c+0x56>
+  2d:	test   dil,0x1
+  31:	jne    60 <factorial_rec_acc_c+0x40>
+  33:	imul   rax,rdi
+  37:	sub    rdi,0x1
+  3b:	cmp    rdi,0x1
+  3f:	je     77 <factorial_rec_acc_c+0x57>
+  41:	nop    WORD PTR [rax+rax*1+0x0]
+  4a:	data16 cs nop WORD PTR [rax+rax*1+0x0]
+  55:	data16 cs nop WORD PTR [rax+rax*1+0x0]
+  60:	imul   rax,rdi
+  64:	lea    rdx,[rdi-0x1]
+  68:	sub    rdi,0x2
+  6c:	imul   rax,rdx
+  70:	cmp    rdi,0x1
+  74:	jne    60 <factorial_rec_acc_c+0x40>
+  76:	ret
+  77:	ret
+  78:	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000000080 <factorial_rec_acc_entry>:
+  80:	endbr64
+  84:	mov    eax,0x1
+  89:	cmp    rdi,0x1
+  8d:	jbe    d6 <factorial_rec_acc_entry+0x56>
+  8f:	test   dil,0x1
+  93:	jne    c0 <factorial_rec_acc_entry+0x40>
+  95:	mov    rax,rdi
+  98:	sub    rdi,0x1
+  9c:	cmp    rdi,0x1
+  a0:	je     d7 <factorial_rec_acc_entry+0x57>
+  a2:	nop    DWORD PTR [rax+rax*1+0x0]
+  aa:	data16 cs nop WORD PTR [rax+rax*1+0x0]
+  b5:	data16 cs nop WORD PTR [rax+rax*1+0x0]
+  c0:	imul   rax,rdi
+  c4:	lea    rdx,[rdi-0x1]
+  c8:	sub    rdi,0x2
+  cc:	imul   rax,rdx
+  d0:	cmp    rdi,0x1
+  d4:	jne    c0 <factorial_rec_acc_entry+0x40>
+  d6:	ret
+  d7:	ret
+  d8:	nop    DWORD PTR [rax+rax*1+0x0]
+
+00000000000000e0 <factorial_iter_c>:
+  e0:	endbr64
+  e4:	cmp    rdi,0x1
+  e8:	jbe    140 <factorial_iter_c+0x60>
+  ea:	mov    edx,0x2
+  ef:	mov    eax,0x3
+  f4:	cmp    rdi,0x3
+  f8:	jb     135 <factorial_iter_c+0x55>
+  fa:	test   dil,0x1
+  fe:	je     120 <factorial_iter_c+0x40>
+ 100:	mov    edx,0x6
+ 105:	mov    eax,0x4
+ 10a:	cmp    rdi,0x4
+ 10e:	jb     135 <factorial_iter_c+0x55>
+ 110:	nop    DWORD PTR [rax+rax*1+0x0]
+ 115:	data16 cs nop WORD PTR [rax+rax*1+0x0]
+ 120:	imul   rdx,rax
+ 124:	lea    rcx,[rax+0x1]
+ 128:	add    rax,0x2
+ 12c:	imul   rdx,rcx
+ 130:	cmp    rdi,rax
+ 133:	jae    120 <factorial_iter_c+0x40>
+ 135:	mov    rax,rdx
+ 138:	ret
+ 139:	nop    DWORD PTR [rax+0x0]
+ 140:	mov    edx,0x1
+ 145:	mov    rax,rdx
+ 148:	ret

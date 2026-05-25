@@ -1,0 +1,76 @@
+
+rutinas_O0.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <factorial_rec_c>:
+   0:	endbr64
+   4:	push   rbp
+   5:	mov    rbp,rsp
+   8:	sub    rsp,0x10
+   c:	mov    QWORD PTR [rbp-0x8],rdi
+  10:	cmp    QWORD PTR [rbp-0x8],0x1
+  15:	ja     1e <factorial_rec_c+0x1e>
+  17:	mov    eax,0x1
+  1c:	jmp    33 <factorial_rec_c+0x33>
+  1e:	mov    rax,QWORD PTR [rbp-0x8]
+  22:	sub    rax,0x1
+  26:	mov    rdi,rax
+  29:	call   2e <factorial_rec_c+0x2e>
+  2e:	imul   rax,QWORD PTR [rbp-0x8]
+  33:	leave
+  34:	ret
+
+0000000000000035 <factorial_rec_acc_c>:
+  35:	endbr64
+  39:	push   rbp
+  3a:	mov    rbp,rsp
+  3d:	sub    rsp,0x10
+  41:	mov    QWORD PTR [rbp-0x8],rdi
+  45:	mov    QWORD PTR [rbp-0x10],rsi
+  49:	cmp    QWORD PTR [rbp-0x8],0x1
+  4e:	ja     56 <factorial_rec_acc_c+0x21>
+  50:	mov    rax,QWORD PTR [rbp-0x10]
+  54:	jmp    72 <factorial_rec_acc_c+0x3d>
+  56:	mov    rax,QWORD PTR [rbp-0x8]
+  5a:	imul   rax,QWORD PTR [rbp-0x10]
+  5f:	mov    rdx,QWORD PTR [rbp-0x8]
+  63:	sub    rdx,0x1
+  67:	mov    rsi,rax
+  6a:	mov    rdi,rdx
+  6d:	call   72 <factorial_rec_acc_c+0x3d>
+  72:	leave
+  73:	ret
+
+0000000000000074 <factorial_rec_acc_entry>:
+  74:	endbr64
+  78:	push   rbp
+  79:	mov    rbp,rsp
+  7c:	sub    rsp,0x10
+  80:	mov    QWORD PTR [rbp-0x8],rdi
+  84:	mov    rax,QWORD PTR [rbp-0x8]
+  88:	mov    esi,0x1
+  8d:	mov    rdi,rax
+  90:	call   95 <factorial_rec_acc_entry+0x21>
+  95:	leave
+  96:	ret
+
+0000000000000097 <factorial_iter_c>:
+  97:	endbr64
+  9b:	push   rbp
+  9c:	mov    rbp,rsp
+  9f:	mov    QWORD PTR [rbp-0x18],rdi
+  a3:	mov    QWORD PTR [rbp-0x10],0x1
+  ab:	mov    QWORD PTR [rbp-0x8],0x2
+  b3:	jmp    c7 <factorial_iter_c+0x30>
+  b5:	mov    rax,QWORD PTR [rbp-0x10]
+  b9:	imul   rax,QWORD PTR [rbp-0x8]
+  be:	mov    QWORD PTR [rbp-0x10],rax
+  c2:	add    QWORD PTR [rbp-0x8],0x1
+  c7:	mov    rax,QWORD PTR [rbp-0x8]
+  cb:	cmp    QWORD PTR [rbp-0x18],rax
+  cf:	jae    b5 <factorial_iter_c+0x1e>
+  d1:	mov    rax,QWORD PTR [rbp-0x10]
+  d5:	pop    rbp
+  d6:	ret

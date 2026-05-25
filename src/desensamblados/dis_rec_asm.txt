@@ -1,0 +1,30 @@
+
+asm_rec.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <factorial_rec>:
+   0:	push   rbp
+   1:	mov    rbp,rsp
+   4:	push   rbx
+   5:	mov    rbx,rdi
+   8:	mov    rax,rsp
+   b:	mov    rcx,QWORD PTR [rip+0x0]        # 12 <factorial_rec+0x12>
+  12:	cmp    rax,rcx
+  15:	cmovb  rcx,rax
+  19:	mov    QWORD PTR [rip+0x0],rcx        # 20 <factorial_rec+0x20>
+  20:	cmp    rbx,0x1
+  24:	jle    35 <factorial_rec.base>
+  26:	lea    rdi,[rbx-0x1]
+  2a:	call   0 <factorial_rec>
+  2f:	imul   rax,rbx
+  33:	jmp    3a <factorial_rec.ret>
+
+0000000000000035 <factorial_rec.base>:
+  35:	mov    eax,0x1
+
+000000000000003a <factorial_rec.ret>:
+  3a:	pop    rbx
+  3b:	pop    rbp
+  3c:	ret
