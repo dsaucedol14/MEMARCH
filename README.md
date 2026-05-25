@@ -315,7 +315,7 @@ En resumen: puedes usar, modificar y redistribuir este código siempre que cualq
 
 **Daniel Saucedo León**
 **Manuel Hernández**
-Estudiante doctoral — Sistemas Computacionales
+Estudiantes doctorado — Sistemas Computacionales -UNISUR
 
 
 
