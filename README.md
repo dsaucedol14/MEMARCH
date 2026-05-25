@@ -125,7 +125,7 @@ memarch/
 │   ├── runners/          # Scripts que ejecutan perf y recogen métricas
 │   └── configs/          # Configuraciones de eventos perf
 ├── analysis/
-│   └── scripts/          # Scripts Python de procesamiento y gráficas
+│   └── script/          # Scripts Linux de procesamiento y gráficas
 │   └── csv/              # CSV 's de resultados
 ├── docs/
 │   ├── paper/            # Documento principal en formato IEEE/ASME
