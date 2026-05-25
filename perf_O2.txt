@@ -1,0 +1,14 @@
+
+ Performance counter stats for './final_O2':
+
+            365737      cycles:u                                                              
+            152626      instructions:u                                                        
+              8585      cache-misses:u                                                        
+              2722      branch-misses:u                                                       
+
+       0.001034636 seconds time elapsed
+
+       0.001146000 seconds user
+       0.000000000 seconds sys
+
+
