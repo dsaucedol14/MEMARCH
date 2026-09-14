@@ -294,7 +294,7 @@ Si utilizas MEMARCH en tu trabajo académico, por favor cítalo como:
                   Márquez Alfredo, Kareli},
   title        = {{MEMARCH}: Análisis comparativo a nivel de máquina de algoritmos recursivos e iterativos en x86-64},
   year         = {2026},
-  institution  = {UNISUR},
+  institution  = {Instituto Tecnológico Superior de Huauchinango},
   version      = {v0.1},
   publisher    = {Zenodo},
   doi          = {10.5281/zenodo.22755993},

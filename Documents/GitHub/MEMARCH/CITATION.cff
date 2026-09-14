@@ -5,16 +5,16 @@ type: software
 authors:
   - family-names: "Saucedo León"
     given-names: "Daniel"
-    affiliation: "UNISUR"
+    affiliation: "Instituto Tecnológico Superior de Huauchinango"
   - family-names: "Sampayo Rodríguez"
     given-names: "Carmen Jeannette"
-    affiliation: "UNISUR"
+    affiliation: "Instituto Tecnológico Superior de Huauchinango"
   - family-names: "Garrido González"
     given-names: "Gerardo"
-    affiliation: "UNISUR"
+    affiliation: "Instituto Tecnológico Superior de Huauchinango"
   - family-names: "Márquez Alfredo"
     given-names: "Kareli"
-    affiliation: "UNISUR"
+    affiliation: "Instituto Tecnológico Superior de Huauchinango"
 version: v0.1
 date-released: "2026-09-14"
 license: GPL-3.0
