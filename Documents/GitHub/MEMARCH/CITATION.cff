@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "Si utilizas este software o los datos derivados de él, por favor cítalo como se indica a continuación."
+title: "MEMARCH: Análisis comparativo a nivel de máquina de algoritmos recursivos e iterativos en x86-64"
+type: software
+authors:
+  - family-names: "Saucedo León"
+    given-names: "Daniel"
+    affiliation: "UNISUR"
+  - family-names: "Hernández"
+    given-names: "Manuel"
+    affiliation: "UNISUR"
+version: v0.1
+date-released: "2026-09-14"
+license: GPL-3.0
+repository-code: "https://github.com/dsaucedol14/MEMARCH"
+keywords:
+  - x86-64
+  - NASM
+  - recursión
+  - iteración
+  - pipeline
+  - cache hierarchy
+  - hardware performance counters
+  - microbenchmarking

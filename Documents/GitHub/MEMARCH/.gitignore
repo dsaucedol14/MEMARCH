@@ -1,0 +1,6 @@
+.vscode/
+*.o
+*.out
+*.exe
+data/raw/*
+!data/raw/.gitkeep
