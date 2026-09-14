@@ -287,8 +287,11 @@ Resumen previsto:
 Si utilizas MEMARCH en tu trabajo académico, por favor cítalo como:
 
 ```bibtex
-@software{saucedo_hernandez_memarch_2026,
-  author       = {Saucedo León, Daniel and Hernández, Manuel},
+@software{saucedo_leon_memarch_2026,
+  author       = {Saucedo León, Daniel and
+                  Sampayo Rodríguez, Carmen Jeannette and
+                  Garrido González, Gerardo and
+                  Márquez Alfredo, Kareli},
   title        = {{MEMARCH}: Análisis comparativo a nivel de máquina de algoritmos recursivos e iterativos en x86-64},
   year         = {2026},
   institution  = {UNISUR},
@@ -321,7 +324,9 @@ En resumen: puedes usar, modificar y redistribuir este código siempre que cualq
 ## Contacto
 
 **Daniel Saucedo León**
-**Manuel Hernández**
+**Carmen Jeannette Sampayo Rodríguez**
+**Gerardo Garrido González**
+**Kareli Márquez Alfredo**
 Estudiante doctoral — Sistemas Computacionales
 
 
