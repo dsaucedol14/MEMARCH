@@ -13,6 +13,11 @@ version: v0.1
 date-released: "2026-09-14"
 license: GPL-3.0
 repository-code: "https://github.com/dsaucedol14/MEMARCH"
+doi: "10.5281/zenodo.22755993"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22755993"
+    description: "DOI del release v0.1 archivado en Zenodo"
 keywords:
   - x86-64
   - NASM

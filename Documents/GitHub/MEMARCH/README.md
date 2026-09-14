@@ -7,6 +7,7 @@
 [![Plataforma](https://img.shields.io/badge/plataforma-Linux%20%7C%20WSL2-lightgrey.svg)]()
 [![Arquitectura](https://img.shields.io/badge/arquitectura-x86--64-red.svg)]()
 [![Estado](https://img.shields.io/badge/estado-en%20desarrollo-yellow.svg)]()
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22755993.svg)](https://doi.org/10.5281/zenodo.22755993)
 
 ---
 
@@ -276,7 +277,7 @@ Resumen previsto:
 - [ ] Suite automatizada de benchmarks con `perf`.
 - [ ] Análisis estadístico y generación de figuras.
 - [ ] Redacción del artículo en formato IEEE.
-- [ ] Publicación del dataset en Zenodo con DOI.
+- [x] Publicación del dataset en Zenodo con DOI.
 - [ ] Extensión a algoritmos de ordenamiento (quicksort, mergesort).
 
 ---
@@ -286,15 +287,20 @@ Resumen previsto:
 Si utilizas MEMARCH en tu trabajo académico, por favor cítalo como:
 
 ```bibtex
-@misc{saucedo_hernandez_memarch_2026,
+@software{saucedo_hernandez_memarch_2026,
   author       = {Saucedo León, Daniel and Hernández, Manuel},
   title        = {{MEMARCH}: Análisis comparativo a nivel de máquina de algoritmos recursivos e iterativos en x86-64},
   year         = {2026},
   institution  = {UNISUR},
-  howpublished = {\url{https://github.com/<usuario>/memarch}},
+  version      = {v0.1},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.22755993},
+  url          = {https://doi.org/10.5281/zenodo.22755993},
   note         = {Proyecto de investigación doctoral}
 }
 ```
+
+DOI del release `v0.1`: [10.5281/zenodo.22755993](https://doi.org/10.5281/zenodo.22755993)
 
 ---
 
